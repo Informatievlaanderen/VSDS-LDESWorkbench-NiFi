@@ -23,6 +23,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+          server-id: github-client-sdk # https://www.schakko.de/2020/12/19/using-github-workflow-with-maven-dependencies-from-a-private-github-package-registry/
+          server-username: GITHUB_USER_REF
+          server-password: GITHUB_TOKEN_REF
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
@@ -37,9 +40,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyse Maven packages
         env:
-          USERNAME: ${{ github.actor }} # Temporary hack to get around PAT for github packages
-          PASSWORD: ${{ secrets.GITHUB_TOKEN }} # Temporary hack to get around PAT for github packages
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages
+          GITHUB_USER_REF: ${{ secrets.USER_NAME }} # Temporary hack to get around PAT for github packages
+          GITHUB_TOKEN_REF: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -s $GITHUB_WORKSPACE/.github/workflows/mvn_settings.xml -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Informatievlaanderen_VSDS-LDESClient4J -Pcoverage 
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Informatievlaanderen_VSDS-LDESWorkbench-NiFi -Pcoverage 

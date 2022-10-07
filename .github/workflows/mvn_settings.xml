@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<settings
-	xmlns="http://maven.apache.org/POM/4.0.0"
+<settings xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
    http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<activeProfiles>
+		<activeProfile>github-workbench-nifi</activeProfile>
+	</activeProfiles>
+
+	<profiles>
+		<profile>
+			<id>github-workbench-nifi</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>https://repo1.maven.org/maven2</url>
+				</repository>
+				<repository>
+					<id>github-client-sdk</id>
+					<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClient4J</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
 	<servers>
 		<server>
-			<id>github</id>
+			<id>github-client-sdk</id>
 			<username>${env.USERNAME}</username>
 			<password>${env.PASSWORD}</password>
 		</server>
