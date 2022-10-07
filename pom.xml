@@ -202,4 +202,73 @@
     		</plugins>
     	</pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco.version}</version>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                                <configuration>
+                                    <formats>
+                                        <format>XML</format>
+                                    </formats>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>github-client-sdk</id>
+            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClient4J</url>
+        </repository>
+        <repository>
+            <id>github-workbench-nifi</id>
+            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESWorkbench-NiFi</url>
+        </repository>
+        <repository>
+            <id>github-client-cli</id>
+            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClientCli</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESWorkbench-NiFi</url>
+        </repository>
+    </distributionManagement>
+
+
+    <scm>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
+        <url>git@github.com:Informatievlaanderen/VSDS-LDESWorkbench-NiFi.git</url>
+        <tag>HEAD</tag>
+    </scm>
 </project>

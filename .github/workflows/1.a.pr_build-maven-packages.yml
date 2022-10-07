@@ -2,7 +2,7 @@ name: 1.a.pr_build-maven-packages
 
 on:
   workflow_run:
-    workflows: [0.build-push-docker-nifi]
+    workflows: [0.build_push-docker-nifi]
     types: [completed]
   workflow_dispatch:
 
