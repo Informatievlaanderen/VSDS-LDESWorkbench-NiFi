@@ -66,9 +66,9 @@ public class NgsiLdToLdesMemberProcessor extends AbstractProcessor {
 	@Override
 	protected void init(final ProcessorInitializationContext context) {
 		descriptors = new ArrayList<>();
-		descriptors.add(DATE_OBSERVED_VALUE_JSON_PATH);
 		descriptors.add(ID_JSON_PATH);
 		descriptors.add(DELIMITER);
+		descriptors.add(DATE_OBSERVED_VALUE_JSON_PATH);
 		descriptors.add(VERSION_OF_KEY);
 		descriptors.add(DATA_DESTINATION_FORMAT);
 		descriptors.add(ADD_TOP_LEVEL_GENERATED_AT);
@@ -131,7 +131,7 @@ public class NgsiLdToLdesMemberProcessor extends AbstractProcessor {
 					outputFormatConverter.getOutputFormat());
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
-			FlowManager.sendRDFToRelation(session, flowFile, content, DATA_UNPARSEABLE_RELATIONSHIP, Lang.JSONLD11);
+			FlowManager.sendRDFToRelation(session, flowFile, content, DATA_UNPARSEABLE_RELATIONSHIP, Lang.JSONLD);
 		}
 	}
 

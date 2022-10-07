@@ -19,20 +19,10 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 	private NgsiLdToLdesMemberProcessorPropertyDescriptors() {
 	}
 
-	public static final PropertyDescriptor DATE_OBSERVED_VALUE_JSON_PATH = new PropertyDescriptor.Builder()
-			.name("DATE_OBSERVED_VALUE_JSON_PATH")
-			.displayName("JsonPath to the value of the dateObserved element")
-			.description(
-					"JsonPath to the value of the dateObserved element, e.g. " + DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
-			.required(false)
-			.addValidator(StandardValidators.NON_EMPTY_VALIDATOR)
-			.defaultValue(DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
-			.build();
-
 	public static final PropertyDescriptor ID_JSON_PATH = new PropertyDescriptor.Builder()
 			.name("ID_JSON_PATH")
-			.displayName("JsonPath to the id")
-			.description("JsonPath to id, e.g. " + DEFAULT_ID_JSON_PATH)
+			.displayName("JSON path to entity ID")
+			.description("JSON path to id, e.g. " + DEFAULT_ID_JSON_PATH)
 			.required(false)
 			.addValidator(StandardValidators.NON_EMPTY_VALIDATOR)
 			.defaultValue(DEFAULT_ID_JSON_PATH)
@@ -40,11 +30,21 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 
 	public static final PropertyDescriptor DELIMITER = new PropertyDescriptor.Builder()
 			.name("DELIMITER")
-			.displayName("Delimiter used to create the version object id")
-			.description("Delimiter used to create the version object id")
+			.displayName("Delimiter between entity ID and timestamp value")
+			.description("Delimiter between entity ID and timestamp value")
 			.required(false)
 			.addValidator(StandardValidators.NON_EMPTY_VALIDATOR)
 			.defaultValue(DEFAULT_DELIMITER)
+			.build();
+
+	public static final PropertyDescriptor DATE_OBSERVED_VALUE_JSON_PATH = new PropertyDescriptor.Builder()
+			.name("DATE_OBSERVED_VALUE_JSON_PATH")
+			.displayName("JSON path to a timestamp value")
+			.description(
+					"JSON path to a timestamp value (for object version ID), e.g. " + DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
+			.required(false)
+			.addValidator(StandardValidators.NON_BLANK_VALIDATOR)
+			.defaultValue(DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
 			.build();
 
 	public static final PropertyDescriptor VERSION_OF_KEY = new PropertyDescriptor.Builder()
