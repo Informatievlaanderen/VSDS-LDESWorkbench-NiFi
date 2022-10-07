@@ -37,7 +37,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyse Maven packages
         env:
-          USER_NAME: ${{ secrets.USER_NAME }} # Temporary hack to get around PAT for github packages
+          USERNAME: ${{ github.actor }} # Temporary hack to get around PAT for github packages
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }} # Temporary hack to get around PAT for github packages
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
