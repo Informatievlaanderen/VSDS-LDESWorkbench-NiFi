@@ -3,9 +3,6 @@ name: 0.build_push-docker-nifi
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 env:

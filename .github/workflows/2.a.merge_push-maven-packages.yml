@@ -1,9 +1,9 @@
 name: 2.a.merge_push-maven-packages
 
 on:
-  workflow_run:
-    workflows: [0.build-push-docker-nifi]
-    types: [completed]
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
