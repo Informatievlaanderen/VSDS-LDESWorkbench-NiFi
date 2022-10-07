@@ -48,6 +48,17 @@
         <wiremock-jre8.version>2.34.0</wiremock-jre8.version>
 		<awaitility.version>4.2.0</awaitility.version>
 
+		<!-- Jacoco -->
+        <jacoco.version>0.8.8</jacoco.version>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.language>java</sonar.language>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>informatievlaanderen</sonar.organization>
+        <sonar.projectKey>Informatievlaanderen_VSDS-LDESWorkbench-NiFi</sonar.projectKey>
+
         <!-- Code formatter -->
         <formatter-maven-plugin.version>2.20.0</formatter-maven-plugin.version>
         <skipFormatCode>false</skipFormatCode>
