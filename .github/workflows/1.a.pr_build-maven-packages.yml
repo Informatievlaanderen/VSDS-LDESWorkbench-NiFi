@@ -41,4 +41,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -s $GITHUB_WORKSPACE/.github/workflows/mvn_settings.xml -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Informatievlaanderen_VSDS-LDESClient4J -Pcoverage --file pom.xm
+        run: mvn -s $GITHUB_WORKSPACE/.github/workflows/mvn_settings.xml -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Informatievlaanderen_VSDS-LDESClient4J -Pcoverage 
