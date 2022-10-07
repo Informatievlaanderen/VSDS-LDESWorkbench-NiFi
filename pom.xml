@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>be.vlaanderen.informatievlaanderen</groupId>
+    <artifactId>ldes-workbench-nifi</artifactId>
+    <version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+    <modules>
+        <module>ldes-workbench-nifi-common</module>
+    	<module>ldes-client-wrappers-nifi</module>
+    	<module>ngsiv2-to-ngsi-ld-processor</module>
+        <module>ngsi-ld-to-ldes-processor</module>
+    </modules>
+
+    <properties>
+        <!-- Java properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Maven properties -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+
+        <!-- Nifi -->
+        <nifi-api.version>1.17.0</nifi-api.version>
+        <nifi-utils.version>1.17.0</nifi-utils.version>
+        <nifi-nar-maven-plugin.version>1.3.5</nifi-nar-maven-plugin.version>
+
+        <!-- Jena -->
+        <apache-jena.version>4.6.1</apache-jena.version>
+
+        <!-- Json -->
+        <jakarta.json>2.0.1</jakarta.json>
+        <jayway.version>2.7.0</jayway.version>
+
+        <!-- Logging -->
+        <logback.version></logback.version>
+        <slf4j.version></slf4j.version>
+
+        <!-- Testing -->
+        <nifi-mock.version>1.17.0</nifi-mock.version>
+        <junit-jupiter.version>5.9.1</junit-jupiter.version>
+        <mockito.version>4.8.0</mockito.version>
+        <wiremock-jre8.version>2.34.0</wiremock-jre8.version>
+		<awaitility.version>4.2.0</awaitility.version>
+
+        <!-- Code formatter -->
+        <formatter-maven-plugin.version>2.20.0</formatter-maven-plugin.version>
+        <skipFormatCode>false</skipFormatCode>
+    </properties>
+
+    <dependencyManagement>
+    	<dependencies>
+    		<!-- VSDS -->
+	        <dependency>
+	            <groupId>${project.groupId}</groupId>
+	            <artifactId>ldes-client</artifactId>
+	            <version>${project.version}</version>
+	        </dependency>
+    		<dependency>
+    			<groupId>${project.groupId}</groupId>
+    			<artifactId>ldes-client-wrappers-nifi</artifactId>
+    			<version>${project.version}</version>
+    		</dependency>
+    		<dependency>
+    			<groupId>${project.groupId}</groupId>
+    			<artifactId>ldes-workbench-nifi-common</artifactId>
+    			<version>${project.version}</version>
+    		</dependency>
+    		<dependency>
+    			<groupId>${project.groupId}</groupId>
+    			<artifactId>ngsi-ld-to-ldes-processor</artifactId>
+    			<version>${project.version}</version>
+    		</dependency>
+    		<dependency>
+    			<groupId>${project.groupId}</groupId>
+    			<artifactId>ngsiv2-to-ngsi-ld-processor</artifactId>
+    			<version>${project.version}</version>
+    		</dependency>
+
+			<!-- Nifi -->
+	        <dependency>
+	            <groupId>org.apache.nifi</groupId>
+	            <artifactId>nifi-api</artifactId>
+	            <version>${nifi-api.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.nifi</groupId>
+	            <artifactId>nifi-utils</artifactId>
+	            <version>${nifi-utils.version}</version>
+	        </dependency>
+
+            <!-- Jena -->
+            <dependency>
+                <groupId>org.apache.jena</groupId>
+                <artifactId>jena-arq</artifactId>
+                <version>${apache-jena.version}</version>
+            </dependency>
+			<dependency>
+				<groupId>org.apache.jena</groupId>
+				<artifactId>jena-geosparql</artifactId>
+				<version>${apache-jena.version}</version>
+			</dependency>
+    	
+	        <!-- JSON -->
+	        <dependency>
+	            <groupId>com.jayway.jsonpath</groupId>
+	            <artifactId>json-path</artifactId>
+	            <version>${jayway.version}</version>
+	        </dependency>
+
+            <!-- Test Dependencies -->
+            <dependency>
+                <groupId>org.apache.nifi</groupId>
+                <artifactId>nifi-mock</artifactId>
+                <version>${nifi-mock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock-jre8</artifactId>
+                <version>${wiremock-jre8.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>${awaitility.version}</version>
+                <scope>test</scope>
+            </dependency>
+    	</dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+    	<!-- VSDS -->
+        <dependency>
+            <groupId>be.vlaanderen.informatievlaanderen</groupId>
+            <artifactId>ldes-client</artifactId>
+        </dependency>
+
+		<!-- Nifi -->
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-utils</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+    	<pluginManagement>
+    		<plugins>
+                <plugin>
+                    <groupId>org.apache.nifi</groupId>
+                    <artifactId>nifi-nar-maven-plugin</artifactId>
+                    <version>${nifi-nar-maven-plugin.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+
+                <!-- CODE FORMATTER -->
+                <plugin>
+                    <groupId>net.revelc.code.formatter</groupId>
+                    <artifactId>formatter-maven-plugin</artifactId>
+                    <version>${formatter-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>validate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <skipFormat>${skipFormatCode}</skipFormat>
+                        <encoding>UTF-8</encoding>
+                        <configFile>${maven.multiModuleProjectDirectory}/formatter.xml</configFile>
+                    </configuration>
+                </plugin>
+    		</plugins>
+    	</pluginManagement>
+    </build>
+</project>

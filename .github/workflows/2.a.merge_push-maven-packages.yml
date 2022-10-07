@@ -1,0 +1,24 @@
+name: 2.a.merge_push-maven-packages
+
+on:
+  workflow_run:
+    workflows: [0.build-push-docker-nifi]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  job-push-maven-packages:
+    name: Push LDES Client SDK Maven packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 17
+      - name: Deploy LDES Client SDK Maven packages to GitHub registry
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: mvn deploy
