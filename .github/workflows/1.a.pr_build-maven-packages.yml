@@ -23,7 +23,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          server-id: github-client-sdk # https://www.schakko.de/2020/12/19/using-github-workflow-with-maven-dependencies-from-a-private-github-package-registry/
+          server-id: github-client-sdk
           server-username: GITHUB_USER_REF
           server-password: GITHUB_TOKEN_REF
       - name: Cache SonarCloud packages

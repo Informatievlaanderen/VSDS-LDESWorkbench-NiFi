@@ -1,290 +1,332 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>be.vlaanderen.informatievlaanderen</groupId>
-    <artifactId>ldes-workbench-nifi</artifactId>
-    <version>1.0-SNAPSHOT</version>
+	<groupId>be.vlaanderen.informatievlaanderen</groupId>
+	<artifactId>ldes-workbench-nifi</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-    <modules>
-        <module>ldes-workbench-nifi-common</module>
-    	<module>ldes-client-wrappers-nifi</module>
-    	<module>ngsiv2-to-ngsi-ld-processor</module>
-        <module>ngsi-ld-to-ldes-processor</module>
-    </modules>
+	<modules>
+		<module>ldes-workbench-nifi-common</module>
+		<module>ldes-client-wrappers-nifi</module>
+		<module>ngsiv2-to-ngsi-ld-processor</module>
+		<module>ngsi-ld-to-ldes-processor</module>
+	</modules>
 
-    <properties>
-        <!-- Java properties -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<properties>
+		<!-- Java properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Maven properties -->
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+		<pmd-plugin.version>3.19.0</pmd-plugin.version>
+        <unittestskip>false</unittestskip>
+        <integrationtestskip>false</integrationtestskip>
 
-        <!-- Nifi -->
-        <nifi-api.version>1.17.0</nifi-api.version>
-        <nifi-utils.version>1.17.0</nifi-utils.version>
-        <nifi-nar-maven-plugin.version>1.3.5</nifi-nar-maven-plugin.version>
+		<!-- Nifi -->
+		<nifi-api.version>1.17.0</nifi-api.version>
+		<nifi-utils.version>1.17.0</nifi-utils.version>
+		<nifi-nar-maven-plugin.version>1.3.5</nifi-nar-maven-plugin.version>
 
-        <!-- Jena -->
-        <apache-jena.version>4.6.1</apache-jena.version>
+		<!-- Jena -->
+		<apache-jena.version>4.6.1</apache-jena.version>
 
-        <!-- Json -->
-        <jakarta.json>2.0.1</jakarta.json>
-        <jayway.version>2.7.0</jayway.version>
+		<!-- Json -->
+		<jakarta.json>2.0.1</jakarta.json>
+		<jayway.version>2.7.0</jayway.version>
 
-        <!-- Logging -->
-        <logback.version></logback.version>
-        <slf4j.version></slf4j.version>
+		<!-- Logging -->
+		<logback.version></logback.version>
+		<slf4j.version></slf4j.version>
 
-        <!-- Testing -->
-        <nifi-mock.version>1.17.0</nifi-mock.version>
-        <junit-jupiter.version>5.9.1</junit-jupiter.version>
-        <mockito.version>4.8.0</mockito.version>
-        <wiremock-jre8.version>2.34.0</wiremock-jre8.version>
+		<!-- Testing -->
+		<nifi-mock.version>1.17.0</nifi-mock.version>
+		<junit-jupiter.version>5.9.1</junit-jupiter.version>
+		<mockito.version>4.8.0</mockito.version>
+		<wiremock-jre8.version>2.34.0</wiremock-jre8.version>
 		<awaitility.version>4.2.0</awaitility.version>
 
 		<!-- Jacoco -->
-        <jacoco.version>0.8.8</jacoco.version>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.language>java</sonar.language>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.organization>informatievlaanderen</sonar.organization>
-        <sonar.projectKey>Informatievlaanderen_VSDS-LDESWorkbench-NiFi</sonar.projectKey>
+		<jacoco.version>0.8.8</jacoco.version>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.language>java</sonar.language>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>informatievlaanderen</sonar.organization>
+		<sonar.projectKey>Informatievlaanderen_VSDS-LDESWorkbench-NiFi</sonar.projectKey>
 
-        <!-- Code formatter -->
-        <formatter-maven-plugin.version>2.20.0</formatter-maven-plugin.version>
-        <skipFormatCode>false</skipFormatCode>
-    </properties>
+		<!-- Code formatter -->
+		<formatter-maven-plugin.version>2.20.0</formatter-maven-plugin.version>
+		<skipFormatCode>false</skipFormatCode>
+	</properties>
 
-    <dependencyManagement>
-    	<dependencies>
-    		<!-- VSDS -->
-	        <dependency>
-	            <groupId>${project.groupId}</groupId>
-	            <artifactId>ldes-client</artifactId>
-	            <version>${project.version}</version>
-	        </dependency>
-    		<dependency>
-    			<groupId>${project.groupId}</groupId>
-    			<artifactId>ldes-client-wrappers-nifi</artifactId>
-    			<version>${project.version}</version>
-    		</dependency>
-    		<dependency>
-    			<groupId>${project.groupId}</groupId>
-    			<artifactId>ldes-workbench-nifi-common</artifactId>
-    			<version>${project.version}</version>
-    		</dependency>
-    		<dependency>
-    			<groupId>${project.groupId}</groupId>
-    			<artifactId>ngsi-ld-to-ldes-processor</artifactId>
-    			<version>${project.version}</version>
-    		</dependency>
-    		<dependency>
-    			<groupId>${project.groupId}</groupId>
-    			<artifactId>ngsiv2-to-ngsi-ld-processor</artifactId>
-    			<version>${project.version}</version>
-    		</dependency>
+	<dependencyManagement>
+		<dependencies>
+			<!-- VSDS -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>ldes-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>ldes-client-wrappers-nifi</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>ldes-workbench-nifi-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>ngsi-ld-to-ldes-processor</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>ngsiv2-to-ngsi-ld-processor</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<!-- Nifi -->
-	        <dependency>
-	            <groupId>org.apache.nifi</groupId>
-	            <artifactId>nifi-api</artifactId>
-	            <version>${nifi-api.version}</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.apache.nifi</groupId>
-	            <artifactId>nifi-utils</artifactId>
-	            <version>${nifi-utils.version}</version>
-	        </dependency>
+			<dependency>
+				<groupId>org.apache.nifi</groupId>
+				<artifactId>nifi-api</artifactId>
+				<version>${nifi-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.nifi</groupId>
+				<artifactId>nifi-utils</artifactId>
+				<version>${nifi-utils.version}</version>
+			</dependency>
 
-            <!-- Jena -->
-            <dependency>
-                <groupId>org.apache.jena</groupId>
-                <artifactId>jena-arq</artifactId>
-                <version>${apache-jena.version}</version>
-            </dependency>
+			<!-- Jena -->
+			<dependency>
+				<groupId>org.apache.jena</groupId>
+				<artifactId>jena-arq</artifactId>
+				<version>${apache-jena.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.apache.jena</groupId>
 				<artifactId>jena-geosparql</artifactId>
 				<version>${apache-jena.version}</version>
 			</dependency>
-    	
-	        <!-- JSON -->
-	        <dependency>
-	            <groupId>com.jayway.jsonpath</groupId>
-	            <artifactId>json-path</artifactId>
-	            <version>${jayway.version}</version>
-	        </dependency>
 
-            <!-- Test Dependencies -->
-            <dependency>
-                <groupId>org.apache.nifi</groupId>
-                <artifactId>nifi-mock</artifactId>
-                <version>${nifi-mock.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>${junit-jupiter.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.tomakehurst</groupId>
-                <artifactId>wiremock-jre8</artifactId>
-                <version>${wiremock-jre8.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.awaitility</groupId>
-                <artifactId>awaitility</artifactId>
-                <version>${awaitility.version}</version>
-                <scope>test</scope>
-            </dependency>
-    	</dependencies>
-    </dependencyManagement>
+			<!-- JSON -->
+			<dependency>
+				<groupId>com.jayway.jsonpath</groupId>
+				<artifactId>json-path</artifactId>
+				<version>${jayway.version}</version>
+			</dependency>
 
-    <dependencies>
-    	<!-- VSDS -->
-        <dependency>
-            <groupId>be.vlaanderen.informatievlaanderen</groupId>
-            <artifactId>ldes-client</artifactId>
-        </dependency>
+			<!-- Test Dependencies -->
+			<dependency>
+				<groupId>org.apache.nifi</groupId>
+				<artifactId>nifi-mock</artifactId>
+				<version>${nifi-mock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.tomakehurst</groupId>
+				<artifactId>wiremock-jre8</artifactId>
+				<version>${wiremock-jre8.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.awaitility</groupId>
+				<artifactId>awaitility</artifactId>
+				<version>${awaitility.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- VSDS -->
+		<dependency>
+			<groupId>be.vlaanderen.informatievlaanderen</groupId>
+			<artifactId>ldes-client</artifactId>
+		</dependency>
 
 		<!-- Nifi -->
-        <dependency>
-            <groupId>org.apache.nifi</groupId>
-            <artifactId>nifi-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.nifi</groupId>
-            <artifactId>nifi-utils</artifactId>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.apache.nifi</groupId>
+			<artifactId>nifi-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.nifi</groupId>
+			<artifactId>nifi-utils</artifactId>
+		</dependency>
+	</dependencies>
 
-    <build>
-    	<pluginManagement>
-    		<plugins>
-                <plugin>
-                    <groupId>org.apache.nifi</groupId>
-                    <artifactId>nifi-nar-maven-plugin</artifactId>
-                    <version>${nifi-nar-maven-plugin.version}</version>
-                    <extensions>true</extensions>
-                </plugin>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.nifi</groupId>
+				<artifactId>nifi-nar-maven-plugin</artifactId>
+				<version>${nifi-nar-maven-plugin.version}</version>
+				<extensions>true</extensions>
+			</plugin>
 
-                <!-- CODE FORMATTER -->
-                <plugin>
-                    <groupId>net.revelc.code.formatter</groupId>
-                    <artifactId>formatter-maven-plugin</artifactId>
-                    <version>${formatter-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>validate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <skipFormat>${skipFormatCode}</skipFormat>
-                        <encoding>UTF-8</encoding>
-                        <configFile>${maven.multiModuleProjectDirectory}/formatter.xml</configFile>
-                    </configuration>
-                </plugin>
-    		</plugins>
-    	</pluginManagement>
-    </build>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<skip>${unittestskip}</skip>
+					<properties>
+						<configurationParameters>
+							cucumber.junit-platform.naming-strategy=long
+						</configurationParameters>
+					</properties>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe-plugin.version}</version>
+				<configuration>
+					<skip>${integrationtestskip}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${pmd-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+			</plugin>
 
-    <profiles>
-        <profile>
-            <id>coverage</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>${jacoco.version}</version>
-                        <configuration>
-                        	<excludes>
-                        		<exclude>**/*.jar</exclude>
-                        	</excludes>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>prepare-agent</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>report</id>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                                <configuration>
-                                    <formats>
-                                        <format>XML</format>
-                                    </formats>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+			<!-- Code formatter -->
+			<plugin>
+				<groupId>net.revelc.code.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+				<version>${formatter-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>validate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skipFormatCode}</skip>
+					<encoding>UTF-8</encoding>
+					<configFile>${project.basedir}/formatter.xml</configFile>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-    <repositories>
-        <repository>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2</url>
-        </repository>
-        <repository>
-            <id>github-client-sdk</id>
-            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClient4J</url>
-        </repository>
-        <repository>
-            <id>github-workbench-nifi</id>
-            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESWorkbench-NiFi</url>
-        </repository>
-        <repository>
-            <id>github-client-cli</id>
-            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClientCli</url>
-        </repository>
-    </repositories>
+	<profiles>
+		<profile>
+			<id>coverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco.version}</version>
+						<configuration>
+							<excludes>
+								<exclude>**/*.jar</exclude>
+							</excludes>
+						</configuration>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESWorkbench-NiFi</url>
-        </repository>
-    </distributionManagement>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>github-client-sdk</id>
+			<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClient4J</url>
+		</repository>
+		<repository>
+			<id>github-workbench-nifi</id>
+			<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESWorkbench-NiFi</url>
+		</repository>
+		<repository>
+			<id>github-client-cli</id>
+			<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClientCli</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub OWNER Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESWorkbench-NiFi</url>
+		</repository>
+	</distributionManagement>
 
 
-    <scm>
-        <connection>scm:git:${project.scm.url}</connection>
-        <developerConnection>scm:git:${project.scm.url}</developerConnection>
-        <url>git@github.com:Informatievlaanderen/VSDS-LDESWorkbench-NiFi.git</url>
-        <tag>HEAD</tag>
-    </scm>
+	<scm>
+		<connection>scm:git:${project.scm.url}</connection>
+		<developerConnection>scm:git:${project.scm.url}</developerConnection>
+		<url>git@github.com:Informatievlaanderen/VSDS-LDESWorkbench-NiFi.git</url>
+		<tag>HEAD</tag>
+	</scm>
 </project>
