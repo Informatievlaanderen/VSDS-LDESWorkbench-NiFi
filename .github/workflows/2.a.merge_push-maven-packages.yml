@@ -18,9 +18,12 @@ jobs:
         with:
           distribution: zulu
           java-version: 17
-      - name: Deploy LDES Client SDK Maven packages to GitHub registry
+      - name: Deploy LDES Client Workbench NiFi packages to GitHub registry
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_USER_REF: ${{ secrets.USER_NAME }} # Temporary hack to get around PAT for github packages
+          GITHUB_TOKEN_REF: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn deploy
       - name: Copy generated NAR files
         run: |
