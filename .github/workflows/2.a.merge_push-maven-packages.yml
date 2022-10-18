@@ -30,7 +30,7 @@ jobs:
         env:
           GITHUB_USER_REF: x-access-token # Temporary hack to get around PAT for github packages
           GITHUB_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }} # Temporary hack to get around PAT for github packages
-        run: mvn --settings settings.xml deploy
+        run: mvn --settings ./.github/workflows/settings.xml deploy
       - name: Copy generated NAR files
         run: |
           cp -pR ${{ github.workspace }}/ldes-client-wrappers-nifi/target/*.nar ${{ github.workspace }}
