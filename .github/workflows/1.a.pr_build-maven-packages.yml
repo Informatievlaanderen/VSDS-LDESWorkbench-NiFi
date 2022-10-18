@@ -11,7 +11,7 @@ env:
 
 jobs:
   job-build-maven-packages:
-    name: Build Maven packages
+    name: Test build LDES Workbench NiFi maven packages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout packages

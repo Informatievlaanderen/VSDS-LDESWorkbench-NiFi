@@ -11,7 +11,7 @@ env:
 
 jobs:
   job-build-docker-workbench-nifi:
-    name: Build LDES Workbench NiFi Docker image
+    name: Test build LDES Workbench NiFi Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,7 +22,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflow: 2.a.merge_push-maven-packages.yml
+          workflow: 1.a.pr_build-maven-packages.yml
           workflow_conclusion: success
           path: ./ldes-workbench-nifi
           name: ldes-nar

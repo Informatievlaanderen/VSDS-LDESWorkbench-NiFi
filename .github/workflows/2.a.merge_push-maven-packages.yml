@@ -6,9 +6,12 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   job-push-maven-packages:
-    name: Push LDES Client SDK Maven packages
+    name: Build and push LDES Workbench NiFi maven packages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,7 +21,7 @@ jobs:
         with:
           distribution: zulu
           java-version: 17
-      - name: Deploy LDES Client Workbench NiFi packages to GitHub registry
+      - name: Deploy LDES Client Workbench NiFi maven packages to GitHub registry
         env:
           GITHUB_USER_REF: ${{ secrets.USER_NAME }} # Temporary hack to get around PAT for github packages
           GITHUB_TOKEN_REF: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages

@@ -15,7 +15,7 @@ env:
 
 jobs:
   job-push-docker-workbench-nifi:
-    name: Push LDES Client CLI docker image
+    name: Build and push LDES Workbench NiFi docker image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
