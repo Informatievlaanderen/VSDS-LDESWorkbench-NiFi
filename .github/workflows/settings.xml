@@ -18,9 +18,18 @@
 				<repository>
 					<id>github</id>
 					<url>https://maven.pkg.github.com/Informatievlaanderen</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
+				</repository>
+				<repository>
+					<id>github-client-sdk</id>
+					<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClient4J</url>
+				</repository>
+				<repository>
+					<id>github-workbench-nifi</id>
+					<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESWorkbench-NiFi</url>
+				</repository>
+				<repository>
+					<id>github-client-cli</id>
+					<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClientCli</url>
 				</repository>
 			</repositories>
 		</profile>
@@ -30,6 +39,11 @@
 			<id>github</id>
 			<username>${env.GITHUB_USER_REF}</username>
 			<password>${env.GITHUB_TOKEN_REF}</password>
+		</server>
+		<server>
+			<id>github-client-sdk</id>
+			<username>${env.CLIENT_USERNAME}</username>
+			<password>${env.CLIENT_PASSWORD}</password>
 		</server>
 	</servers>
 </settings>
