@@ -18,6 +18,14 @@ jobs:
         uses: actions/checkout@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: 2.a.merge_push-maven-packages.yml
+          workflow_conclusion: success
+          path: ./ldes-workbench-nifi
+          name: ldes-nar
       - name: Build LDES Workbench NiFi Docker image
         uses: docker/build-push-action@v3
         with:

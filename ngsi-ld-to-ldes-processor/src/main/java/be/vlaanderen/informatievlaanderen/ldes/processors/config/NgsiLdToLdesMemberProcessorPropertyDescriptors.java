@@ -41,7 +41,8 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 			.name("DATE_OBSERVED_VALUE_JSON_PATH")
 			.displayName("JSON path to a timestamp value")
 			.description(
-					"JSON path to a timestamp value (for object version ID), e.g. " + DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
+					"JSON path to a timestamp value (for object version ID), e.g. "
+							+ DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
 			.required(false)
 			.addValidator(StandardValidators.NON_BLANK_VALIDATOR)
 			.defaultValue(DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)

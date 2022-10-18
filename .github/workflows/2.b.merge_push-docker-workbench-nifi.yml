@@ -42,6 +42,14 @@ jobs:
             type=ref,event=pr
             type=raw,value=${{env.version}}
             type=raw,value={{date 'YYYYMMDDTHHmm'}}
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: 2.a.merge_push-maven-packages.yml
+          workflow_conclusion: success
+          path: ./ldes-workbench-nifi
+          name: ldes-nar
       - name: Build LDES Workbench NiFi Docker image
         uses: docker/build-push-action@v3
         with:

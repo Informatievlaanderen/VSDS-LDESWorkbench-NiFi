@@ -44,4 +44,15 @@ jobs:
           GITHUB_TOKEN_REF: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Informatievlaanderen_VSDS-LDESWorkbench-NiFi -Pcoverage 
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Informatievlaanderen_VSDS-LDESWorkbench-NiFi -Pcoverage
+      - name: Copy generated NAR files
+        run: |
+          cp -pR ${{ github.workspace }}/ldes-client-wrappers-nifi/target/*.nar ${{ github.workspace }}
+          cp -pR ${{ github.workspace }}/ngsi-ld-to-ldes-processor/target/*.nar ${{ github.workspace }}
+          cp -pR ${{ github.workspace }}/ngsiv2-to-ngsi-ld-processor/target/*.nar ${{ github.workspace }}
+      - name: Upload LDES NiFi nar package
+        uses: actions/upload-artifact@v3
+        with:
+          name: ldes-nar
+          path: |
+            ${{ github.workspace }}/*.nar
