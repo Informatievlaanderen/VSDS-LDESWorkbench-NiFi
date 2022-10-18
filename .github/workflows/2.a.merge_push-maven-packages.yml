@@ -6,9 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   job-push-maven-packages:
     name: Build and push LDES Workbench NiFi maven packages
@@ -23,9 +20,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          server-id: github-client-sdk
-          server-username: GITHUB_USER_REF
-          server-password: GITHUB_TOKEN_REF
       - name: Cache Maven packages
         uses: actions/cache@v1
         with:
@@ -34,11 +28,9 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Deploy LDES Client Workbench NiFi maven packages to GitHub registry
         env:
-          GITHUB_USER_REF: ${{ secrets.USER_NAME }} # Temporary hack to get around PAT for github packages
-          GITHUB_TOKEN_REF: ${{ secrets.ACCESS_TOKEN }} # Temporary hack to get around PAT for github packages
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn deploy
+          GITHUB_USER_REF: x-access-token # Temporary hack to get around PAT for github packages
+          GITHUB_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }} # Temporary hack to get around PAT for github packages
+        run: mvn --settings settings.xml deploy
       - name: Copy generated NAR files
         run: |
           cp -pR ${{ github.workspace }}/ldes-client-wrappers-nifi/target/*.nar ${{ github.workspace }}

@@ -321,7 +321,6 @@
 		</repository>
 	</distributionManagement>
 
-
 	<scm>
 		<connection>scm:git:${project.scm.url}</connection>
 		<developerConnection>scm:git:${project.scm.url}</developerConnection>
