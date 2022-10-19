@@ -1,5 +1,22 @@
 # LDES Workbench NiFi
 
+The workbench is a customized [Apache NiFi](https://nifi.apache.org) docker image containing processors built by VSDS to allow processing of data that is intended to be ingested by an LDES server.
+
+- [Docker image](#docker-image)
+- [ModelConverter](#modelconverter)
+- [SDK configuration](#sdk-configuration)
+    - [Configurable options](#configurable-options)
+    - [Accepted RDF formats](#accepted-rdf-formats)
+- [Deployment](#deployment)
+    - [GIPOD dev](#gipod-dev)
+    - [GTFS dev](#gtfs-dev)
+    - [IoW dev](#iow-dev)
+    
+
+
+## Docker image
+
+
 A docker is provided that contains a NiFi instance (based on the apache/nifi docker) and the LDES Client processor NAR files. The docker doesn't contain any workflows, these can be uploaded with a [script](./ldes-client-wrappers/ldes-client-wrappers-nifi/ldes-workbench-nifi/scripts/make.sh)
 
 ```bash

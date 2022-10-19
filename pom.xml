@@ -43,7 +43,6 @@
 		<jayway.version>2.7.0</jayway.version>
 
 		<!-- Logging -->
-		<logback.version></logback.version>
 		<slf4j.version></slf4j.version>
 
 		<!-- Testing -->

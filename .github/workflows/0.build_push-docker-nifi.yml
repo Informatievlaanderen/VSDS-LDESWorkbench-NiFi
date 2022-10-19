@@ -27,7 +27,7 @@ jobs:
         name: Check registry for existing VSDS NiFi docker image
         run: |
           TOKEN=$(echo ${{ secrets.GITHUB_TOKEN }} | base64)
-          IMAGE_PRESENT=$(curl -H "Authorization: Bearer ${TOKEN}" -X GET https://${{ env.REGISTRY }}/v2/${{ env.USERNAME }}/${{ env.NIFI_IMAGE }}/tags/list | jq '.tags | any(. == "${{ env.NIFI_DOCKER_IMAGE_VERSION }}")')
+          IMAGE_PRESENT=$(curl -H "Authorization: Bearer ${TOKEN}" -X GET https://${{ env.REGISTRY }}/v2/${{ env.USERNAME }}/${{ env.NIFI_IMAGE }}/tags/list | jq '(.tags[])? | any(. == "${{ env.NIFI_DOCKER_IMAGE_VERSION }}")')
           if [[ $IMAGE_PRESENT == "true" ]]; then
             echo "::set-output name=result::1"
           else
