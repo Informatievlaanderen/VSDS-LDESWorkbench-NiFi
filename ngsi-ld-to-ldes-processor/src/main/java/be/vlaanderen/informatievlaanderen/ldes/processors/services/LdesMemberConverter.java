@@ -69,6 +69,9 @@ public class LdesMemberConverter {
 	public String generateId(String jsonString) {
 		String dateObserved;
 		try {
+			if (dateObservedValueJsonPath.equals("")) {
+				throw new PathNotFoundException();
+			}
 			dateObserved = JsonPath.read(jsonString, dateObservedValueJsonPath);
 		} catch (PathNotFoundException pathNotFoundException) {
 			dateObserved = LocalDateTime.now().format(formatter);

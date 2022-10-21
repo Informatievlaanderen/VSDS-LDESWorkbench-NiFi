@@ -3,6 +3,7 @@ package be.vlaanderen.informatievlaanderen.ldes.processors.config;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFLanguages;
 import org.apache.nifi.components.PropertyDescriptor;
+import org.apache.nifi.components.Validator;
 import org.apache.nifi.processor.ProcessContext;
 import org.apache.nifi.processor.util.StandardValidators;
 
@@ -44,7 +45,7 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 					"JSON path to a timestamp value (for object version ID), e.g. "
 							+ DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
 			.required(false)
-			.addValidator(StandardValidators.NON_BLANK_VALIDATOR)
+			.addValidator(Validator.VALID)
 			.defaultValue(DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH)
 			.build();
 

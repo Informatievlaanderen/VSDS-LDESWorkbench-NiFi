@@ -22,13 +22,11 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LdesMemberConverterTest {
-
-	private static final String DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH = "$.dateObserved.value['@value']";
 	private static final String DEFAULT_ID_JSON_PATH = "$.id";
 	private static final String DEFAULT_DELIMITER = "/";
 	private static final String DEFAULT_VERSION_OF_KEY = "http://purl.org/dc/terms/isVersionOf";
 
-	LdesMemberConverter ldesMemberConverter = new LdesMemberConverter(DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH,
+	LdesMemberConverter ldesMemberConverter = new LdesMemberConverter("",
 			DEFAULT_ID_JSON_PATH, DEFAULT_DELIMITER, DEFAULT_VERSION_OF_KEY, false);
 
 	@ParameterizedTest
@@ -46,7 +44,8 @@ class LdesMemberConverterTest {
 		public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
 			return Stream.of(
 					Arguments.of("example-waterqualityobserved.json",
-							"urn:ngsi-v2:cot-imec-be:WaterQualityObserved:imec-iow-3orY3reQDK5n3TMpPnLVYR/2022-04-19T11:40:42.000Z"),
+							"urn:ngsi-v2:cot-imec-be:WaterQualityObserved:imec-iow-3orY3reQDK5n3TMpPnLVYR/"
+									+ getPartOfLocalDateTime()),
 					Arguments.of("example-device.json",
 							"urn:ngsi-v2:cot-imec-be:Device:imec-iow-UR5gEycRuaafxnhvjd9jnU/"
 									+ getPartOfLocalDateTime()),
