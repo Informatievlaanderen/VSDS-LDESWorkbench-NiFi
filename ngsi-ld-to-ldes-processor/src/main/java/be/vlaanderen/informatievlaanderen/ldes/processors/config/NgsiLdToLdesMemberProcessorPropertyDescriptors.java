@@ -77,16 +77,6 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 			.allowableValues(String.valueOf(true), String.valueOf(false))
 			.build();
 
-	public static final PropertyDescriptor USE_SIMPLE_VERSION_OF = new PropertyDescriptor.Builder()
-			.name("USE_SIMPLE_VERSION_OF")
-			.displayName("Use simple URI for isVersionOf")
-			.description("Use simple URI for isVersionOf")
-			.required(false)
-			.addValidator(StandardValidators.BOOLEAN_VALIDATOR)
-			.defaultValue(String.valueOf(true))
-			.allowableValues(String.valueOf(true), String.valueOf(false))
-			.build();
-
 	public static final PropertyDescriptor ADD_WKT_PROPERTY = new PropertyDescriptor.Builder()
 			.name("ADD_WKT_PROPERTY")
 			.displayName("Add 'asWKT' property")
@@ -119,10 +109,6 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 
 	public static boolean isAddTopLevelGeneratedAt(ProcessContext context) {
 		return context.getProperty(ADD_TOP_LEVEL_GENERATED_AT).asBoolean();
-	}
-
-	public static boolean isUseSimpleVersionOf(ProcessContext context) {
-		return context.getProperty(USE_SIMPLE_VERSION_OF).asBoolean();
 	}
 
 	public static boolean isAddWKTProperty(ProcessContext context) {

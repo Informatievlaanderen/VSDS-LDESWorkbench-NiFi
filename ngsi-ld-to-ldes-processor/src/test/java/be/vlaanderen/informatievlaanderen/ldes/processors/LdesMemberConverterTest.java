@@ -27,7 +27,7 @@ class LdesMemberConverterTest {
 	private static final String DEFAULT_VERSION_OF_KEY = "http://purl.org/dc/terms/isVersionOf";
 
 	LdesMemberConverter ldesMemberConverter = new LdesMemberConverter("",
-			DEFAULT_ID_JSON_PATH, DEFAULT_DELIMITER, DEFAULT_VERSION_OF_KEY, false);
+			DEFAULT_ID_JSON_PATH, DEFAULT_DELIMITER, DEFAULT_VERSION_OF_KEY);
 
 	@ParameterizedTest
 	@ArgumentsSource(JsonFileArgumentsProvider.class)

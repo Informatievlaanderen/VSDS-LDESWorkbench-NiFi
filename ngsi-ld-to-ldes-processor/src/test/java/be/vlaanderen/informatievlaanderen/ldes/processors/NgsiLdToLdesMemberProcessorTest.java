@@ -46,7 +46,6 @@ class NgsiLdToLdesMemberProcessorTest {
 		testRunner.setProperty("VERSION_OF_KEY", DEFAULT_VERSION_OF_KEY);
 		testRunner.setProperty("DATA_DESTINATION_FORMAT", DEFAULT_DATA_DESTINATION_FORMAT);
 		testRunner.setProperty("ADD_TOP_LEVEL_GENERATED_AT", "false");
-		testRunner.setProperty("USE_SIMPLE_VERSION_OF", "true");
 		final Path JSON_SNIPPET = Paths.get(String.valueOf(new File(
 				Objects.requireNonNull(getClass().getClassLoader().getResource("example-waterqualityobserved.json"))
 						.toURI())));
