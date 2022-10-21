@@ -42,7 +42,7 @@ public class NgsiLdToLdesMemberProcessor extends AbstractProcessor {
 		descriptors.add(DATE_OBSERVED_VALUE_JSON_PATH);
 		descriptors.add(VERSION_OF_KEY);
 		descriptors.add(DATA_DESTINATION_FORMAT);
-		descriptors.add(ADD_TOP_LEVEL_GENERATED_AT);
+		descriptors.add(GENERATED_AT_TIME_PROPERTY);
 		descriptors.add(ADD_WKT_PROPERTY);
 		descriptors = Collections.unmodifiableList(descriptors);
 
@@ -70,12 +70,12 @@ public class NgsiLdToLdesMemberProcessor extends AbstractProcessor {
 		String delimiter = getDelimiter(context);
 		String versionOfKey = getVersionOfKey(context);
 		Lang dataDestionationFormat = getDataDestinationFormat(context);
-		boolean addTopLevelGeneratedAt = isAddTopLevelGeneratedAt(context);
+		String generatedAtTimeProperty = getGeneratedAtTimeProperty(context);
 		addWKTProperty = isAddWKTProperty(context);
 
 		memberInfoExtractor = new MemberInfoExtractor(dateObservedValueJsonPath, idJsonPath);
 		ldesMemberConverter = new LdesMemberConverter(dateObservedValueJsonPath, idJsonPath, delimiter, versionOfKey);
-		outputFormatConverter = new OutputFormatConverter(dataDestionationFormat, addTopLevelGeneratedAt);
+		outputFormatConverter = new OutputFormatConverter(dataDestionationFormat, generatedAtTimeProperty);
 	}
 
 	@Override

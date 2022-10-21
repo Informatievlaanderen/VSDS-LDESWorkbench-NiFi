@@ -67,14 +67,13 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 			.defaultValue(DEFAULT_DATA_DESTINATION_FORMAT)
 			.build();
 
-	public static final PropertyDescriptor ADD_TOP_LEVEL_GENERATED_AT = new PropertyDescriptor.Builder()
-			.name("ADD_TOP_LEVEL_GENERATED_AT")
-			.displayName("Add top-level 'generatedAt' property")
-			.description("Add top-level 'generatedAt' property")
+	public static final PropertyDescriptor GENERATED_AT_TIME_PROPERTY = new PropertyDescriptor.Builder()
+			.name("GENERATED_AT_TIME_PROPERTY")
+			.displayName("GeneratedAtTime property")
+			.description("GeneratedAtTime property")
 			.required(false)
-			.addValidator(StandardValidators.BOOLEAN_VALIDATOR)
-			.defaultValue(String.valueOf(true))
-			.allowableValues(String.valueOf(true), String.valueOf(false))
+			.addValidator(Validator.VALID)
+			.defaultValue("http://www.w3.org/ns/prov#generatedAtTime")
 			.build();
 
 	public static final PropertyDescriptor ADD_WKT_PROPERTY = new PropertyDescriptor.Builder()
@@ -107,8 +106,8 @@ public final class NgsiLdToLdesMemberProcessorPropertyDescriptors {
 		return RDFLanguages.nameToLang(context.getProperty(DATA_DESTINATION_FORMAT).getValue());
 	}
 
-	public static boolean isAddTopLevelGeneratedAt(ProcessContext context) {
-		return context.getProperty(ADD_TOP_LEVEL_GENERATED_AT).asBoolean();
+	public static String getGeneratedAtTimeProperty(ProcessContext context) {
+		return context.getProperty(GENERATED_AT_TIME_PROPERTY).getValue();
 	}
 
 	public static boolean isAddWKTProperty(ProcessContext context) {
