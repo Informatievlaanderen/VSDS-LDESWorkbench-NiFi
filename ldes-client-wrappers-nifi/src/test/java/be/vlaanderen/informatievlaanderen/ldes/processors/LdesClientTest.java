@@ -36,13 +36,13 @@ class LdesClientTest {
 	}
 
 	@Test
-	void when_runningLdesClientWithFragmentContaining2DifferentLDES_expectsLdesMembersOnlyFromFragmentView() {
+	void when_runningLdesClientWithFragmentContaining2DifferentLDES_expectsAllLdesMembers() {
 		testRunner.setProperty("DATA_SOURCE_URL", "http://localhost:10101/exampleData?scenario=differentLdes");
 
 		testRunner.run(10);
 
 		List<MockFlowFile> dataFlowfiles = testRunner.getFlowFilesForRelationship(DATA_RELATIONSHIP);
 
-		assertEquals(1, dataFlowfiles.size());
+		assertEquals(2, dataFlowfiles.size());
 	}
 }
