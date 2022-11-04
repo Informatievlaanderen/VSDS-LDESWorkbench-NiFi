@@ -17,7 +17,7 @@ The workbench is a customized [Apache NiFi](https://nifi.apache.org) docker imag
 
 The LDES Client Processor is a Nifi wrapper around the [LDES Client SDK](https://github.com/Informatievlaanderen/VSDS-LDESClient4J) which enables you to follow and synchronize with a Linked Data Event Stream.
 
-Further details on the usage of the the Client can be found on the [dedicated readme](./ldes-client-wrappers-nifi/README.md).
+Further details on the usage of the the Client can be found [here](./ldes-client-wrappers-nifi/README.md).
 
 ### NGSI V2 To LD
 
@@ -43,13 +43,15 @@ locally running NiFi instance by adding it to the /lib directory.
 ### NiFi Docker 
 
 Additionally, a docker file is provided to avoid setting up a Nifi instance which contains a NiFi instance 
-(based on the apache/nifi docker) and the LDES Client processor NAR files. The docker doesn't contain any workflows, these can be uploaded manually.
+(based on the apache/nifi docker) and the above-mentioned processors. 
+
+The docker doesn't contain any workflows, these can be uploaded manually.
 
 ```shell
 docker run --name ldes-workbench \
   -p 8443:8443 \
   -d \
-  -e SINGLE_USER_CREDENTIALS_USERNAME=workbench \
-  -e SINGLE_USER_CREDENTIALS_PASSWORD=b677c5c07bf83f5742c815a04fd48b88372ed19f0e06c4d2f0bc5997ab4f0470 \
+  -e SINGLE_USER_CREDENTIALS_USERNAME=[username] \
+  -e SINGLE_USER_CREDENTIALS_PASSWORD=[password consisting of 32 characters] \
   ghcr.io/informatievlaanderen/ldes-workbench-nifi:latest
 ```
