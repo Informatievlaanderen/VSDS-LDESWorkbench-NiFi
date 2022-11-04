@@ -57,6 +57,6 @@ jobs:
           context: ./ldes-workbench-nifi
           push: true
           tags: |
-            ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:main , ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:${{ env.BUILD_DATE }}
+            ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:latest , ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:${{ env.BUILD_DATE }}
           build-args: |
             NIFI_DOCKER_IMAGE_VERSION=${{ env.NIFI_DOCKER_IMAGE_VERSION }}
