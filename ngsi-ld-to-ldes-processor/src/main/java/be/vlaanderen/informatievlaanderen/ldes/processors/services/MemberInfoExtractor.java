@@ -24,7 +24,7 @@ public class MemberInfoExtractor {
 		String dateObserved;
 		try {
 			dateObserved = JsonPath.read(jsonString, dateObservedValueJsonPath);
-		} catch (PathNotFoundException pathNotFoundException) {
+		} catch (PathNotFoundException | IllegalArgumentException exception) {
 			dateObserved = LocalDateTime.now().format(formatter);
 		}
 		String id = JsonPath.read(jsonString, idJsonPath);
