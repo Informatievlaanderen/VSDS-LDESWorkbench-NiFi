@@ -66,7 +66,7 @@
 		<sonar.projectKey>Informatievlaanderen_VSDS-LDESWorkbench-NiFi-${project.groupId}:${project.artifactId}</sonar.projectKey>
 
 		<!-- Code formatter -->
-		<formatter-maven-plugin.version>2.20.0</formatter-maven-plugin.version>
+		<formatter-maven-plugin.version>2.21.0</formatter-maven-plugin.version>
 		<skipFormatCode>false</skipFormatCode>
 	</properties>
 
