@@ -31,7 +31,7 @@ public final class LdesProcessorProperties {
 			.description("RDF format identifier of the data source")
 			.required(false)
 			.addValidator(new RDFLanguageValidator())
-			.defaultValue(DEFAULT_DATA_SOURCE_FORMAT)
+			.defaultValue(DEFAULT_DATA_SOURCE_FORMAT.getHeaderString())
 			.build();
 
 	public static final PropertyDescriptor DATA_DESTINATION_FORMAT = new PropertyDescriptor.Builder()
@@ -40,7 +40,7 @@ public final class LdesProcessorProperties {
 			.description("RDF format identifier of the data destination")
 			.required(false)
 			.addValidator(new RDFLanguageValidator())
-			.defaultValue(DEFAULT_DATA_DESTINATION_FORMAT)
+			.defaultValue(DEFAULT_DATA_DESTINATION_FORMAT.getHeaderString())
 			.build();
 
 	public static final PropertyDescriptor FRAGMENT_EXPIRATION_INTERVAL = new PropertyDescriptor.Builder()
@@ -50,7 +50,7 @@ public final class LdesProcessorProperties {
 					"The number of seconds to expire a mutable fragment when the Cache-control header contains no max-age value")
 			.required(false)
 			.addValidator(StandardValidators.POSITIVE_LONG_VALIDATOR)
-			.defaultValue(DEFAULT_FRAGMENT_EXPIRATION_INTERVAL)
+			.defaultValue(DEFAULT_FRAGMENT_EXPIRATION_INTERVAL.toString())
 			.build();
 
 	public static String getDataSourceUrl(final ProcessContext context) {
