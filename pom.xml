@@ -51,7 +51,7 @@
 		<!-- Testing -->
 		<nifi-mock.version>1.18.0</nifi-mock.version>
 		<junit-jupiter.version>5.9.1</junit-jupiter.version>
-		<mockito.version>4.8.0</mockito.version>
+		<mockito.version>4.8.1</mockito.version>
 		<wiremock-jre8.version>2.35.0</wiremock-jre8.version>
 		<awaitility.version>4.2.0</awaitility.version>
 
