@@ -47,7 +47,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Informatievlaanderen_VSDS-LDESWorkbench-NiFi -Pcoverage
       - name: Copy generated NAR files
         run: |
-          cp -pR ${{ github.workspace }}/ldes-client-wrappers-nifi/target/*.nar ${{ github.workspace }}
+          cp -pR ${{ github.workspace }}/ldes-client-processor/target/*.nar ${{ github.workspace }}
           cp -pR ${{ github.workspace }}/ngsi-ld-to-ldes-processor/target/*.nar ${{ github.workspace }}
           cp -pR ${{ github.workspace }}/ngsiv2-to-ngsi-ld-processor/target/*.nar ${{ github.workspace }}
       - name: Upload LDES NiFi nar package

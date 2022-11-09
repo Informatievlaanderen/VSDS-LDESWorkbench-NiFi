@@ -11,7 +11,7 @@
 
 	<modules>
 		<module>ldes-workbench-nifi-common</module>
-		<module>ldes-client-wrappers-nifi</module>
+		<module>ldes-client-processor</module>
 		<module>ngsiv2-to-ngsi-ld-processor</module>
 		<module>ngsi-ld-to-ldes-processor</module>
 	</modules>
@@ -77,7 +77,7 @@
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>ldes-client-wrappers-nifi</artifactId>
+				<artifactId>ldes-client-processor</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

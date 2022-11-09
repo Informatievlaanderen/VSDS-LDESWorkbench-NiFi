@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ldes-client-wrappers-nifi</artifactId>
+    <artifactId>ldes-client-processor</artifactId>
     <packaging>nar</packaging>
 
     <properties>
