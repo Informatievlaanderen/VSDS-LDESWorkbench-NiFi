@@ -14,13 +14,13 @@ import org.junit.jupiter.api.Test;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 
 @WireMockTest(httpPort = 10101)
-class LdesClientProcessorTest {
+class LdesClientTest {
 
 	private TestRunner testRunner;
 
 	@BeforeEach
 	public void init() {
-		testRunner = TestRunners.newTestRunner(LdesClientProcessor.class);
+		testRunner = TestRunners.newTestRunner(LdesClient.class);
 	}
 
 	@Test

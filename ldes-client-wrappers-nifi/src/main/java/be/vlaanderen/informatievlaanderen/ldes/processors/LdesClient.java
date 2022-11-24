@@ -7,6 +7,7 @@ import static be.vlaanderen.informatievlaanderen.ldes.processors.config.LdesProc
 import static be.vlaanderen.informatievlaanderen.ldes.processors.config.LdesProcessorRelationships.DATA_RELATIONSHIP;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.apache.jena.riot.Lang;
@@ -34,9 +35,9 @@ import be.vlaanderen.informatievlaanderen.ldes.processors.services.FlowManager;
 @Tags({ "ldes-client, vsds" })
 @CapabilityDescription("Extract members from an LDES source and send them to the next processor")
 @Stateful(description = "Stores mutable fragments to allow processor restart", scopes = Scope.LOCAL)
-public class LdesClientProcessor extends AbstractProcessor {
+public class LdesClient extends AbstractProcessor {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LdesClientProcessor.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LdesClient.class);
 
 	protected LdesService ldesService;
 
@@ -56,10 +57,7 @@ public class LdesClientProcessor extends AbstractProcessor {
 		Lang dataSourceFormat = LdesProcessorProperties.getDataSourceFormat(context);
 		Long fragmentExpirationInterval = LdesProcessorProperties.getFragmentExpirationInterval(context);
 
-		ldesService = LdesClientImplFactory.getLdesService();
-
-		ldesService.setDataSourceFormat(dataSourceFormat);
-		ldesService.setFragmentExpirationInterval(fragmentExpirationInterval);
+		ldesService = LdesClientImplFactory.getLdesService(dataSourceFormat, fragmentExpirationInterval);
 
 		ldesService.queueFragment(dataSourceUrl);
 
@@ -74,10 +72,9 @@ public class LdesClientProcessor extends AbstractProcessor {
 			LdesFragment fragment = ldesService.processNextFragment();
 
 			// Send the processed members to the next Nifi processor
-			fragment.getMembers()
-					.forEach(ldesMember -> FlowManager.sendRDFToRelation(session,
-							ModelConverter.convertModelToString(ldesMember.getMemberModel(), dataDestinationFormat),
-							DATA_RELATIONSHIP, dataDestinationFormat));
+			fragment.getMembers().forEach(ldesMember -> FlowManager.sendRDFToRelation(session,
+					ModelConverter.convertModelToString(ldesMember.getMemberModel(), dataDestinationFormat),
+					DATA_RELATIONSHIP, dataDestinationFormat));
 		}
 	}
 }
