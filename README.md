@@ -17,7 +17,7 @@ The workbench is a customized [Apache NiFi](https://nifi.apache.org) docker imag
 
 The LDES Client Processor is a Nifi wrapper around the [LDES Client SDK](https://github.com/Informatievlaanderen/VSDS-LDESClient4J) which enables you to follow and synchronize with a Linked Data Event Stream.
 
-Further details on the usage of the the Client can be found [here](./ldes-client-wrappers-nifi/README.md).
+Further details on the usage of the the Client can be found [here](./ldes-client-processor/README.md).
 
 ### NGSI V2 To LD
 
