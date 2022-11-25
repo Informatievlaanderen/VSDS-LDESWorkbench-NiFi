@@ -29,6 +29,9 @@
 		<pmd-plugin.version>3.19.0</pmd-plugin.version>
         <unittestskip>false</unittestskip>
         <integrationtestskip>false</integrationtestskip>
+        
+        <!-- VSDS -->
+        <ldes-client.version>1.0-SNAPSHOT</ldes-client.version>
 
 		<!-- Nifi -->
 		<nifi-api.version>1.18.0</nifi-api.version>
@@ -73,7 +76,7 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>ldes-client</artifactId>
-				<version>${project.version}</version>
+				<version>${ldes-client.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>

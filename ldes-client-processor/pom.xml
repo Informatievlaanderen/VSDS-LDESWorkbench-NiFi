@@ -25,8 +25,8 @@
 			<groupId>be.vlaanderen.informatievlaanderen</groupId>
 			<artifactId>ldes-workbench-nifi-common</artifactId>
 		</dependency>
-
-        <!-- Jena -->
+       
+       	<!-- Jena -->
 		<dependency>
 			<groupId>org.apache.jena</groupId>
 			<artifactId>jena-arq</artifactId>

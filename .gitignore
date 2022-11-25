@@ -13,6 +13,7 @@
 **/application-local.yml
 *.user
 *.local*
+*.db
 
 ###
 ### Makefiles

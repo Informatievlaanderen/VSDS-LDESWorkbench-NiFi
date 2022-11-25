@@ -21,6 +21,8 @@ class LdesClientTest {
 	@BeforeEach
 	public void init() {
 		testRunner = TestRunners.newTestRunner(LdesClient.class);
+
+		((LdesClient) testRunner.getProcessor()).ldesService.getStateManager().clearState();
 	}
 
 	@Test
