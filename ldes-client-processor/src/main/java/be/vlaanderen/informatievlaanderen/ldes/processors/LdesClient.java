@@ -41,8 +41,9 @@ public class LdesClient extends AbstractProcessor {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LdesClient.class);
 
+	protected String identifier = null;
 	protected LdesClientConfig config = new LdesClientConfig();
-	protected LdesService ldesService = LdesClientImplFactory.getLdesService(config);
+	protected LdesService ldesService;
 
 	@Override
 	public Set<Relationship> getRelationships() {
@@ -56,7 +57,10 @@ public class LdesClient extends AbstractProcessor {
 
 	@OnAdded
 	public void onAdded() {
-		config.setPersistenceDbName(getIdentifier() + "-" + config.getPersistenceDbName());
+		if (identifier == null) {
+			identifier = getIdentifier();
+		}
+		config.setPersistenceDbName(identifier + "-" + config.getPersistenceDbName());
 	}
 
 	@OnScheduled
@@ -64,6 +68,8 @@ public class LdesClient extends AbstractProcessor {
 		String dataSourceUrl = LdesProcessorProperties.getDataSourceUrl(context);
 		Lang dataSourceFormat = LdesProcessorProperties.getDataSourceFormat(context);
 		Long fragmentExpirationInterval = LdesProcessorProperties.getFragmentExpirationInterval(context);
+
+		ldesService = LdesClientImplFactory.getLdesService(config);
 
 		ldesService.setDataSourceFormat(dataSourceFormat);
 		ldesService.setFragmentExpirationInterval(fragmentExpirationInterval);

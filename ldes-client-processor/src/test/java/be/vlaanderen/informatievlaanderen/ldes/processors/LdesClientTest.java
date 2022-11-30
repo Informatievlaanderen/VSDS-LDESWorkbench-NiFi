@@ -21,8 +21,6 @@ class LdesClientTest {
 	@BeforeEach
 	public void init() {
 		testRunner = TestRunners.newTestRunner(LdesClient.class);
-
-		((LdesClient) testRunner.getProcessor()).ldesService.getStateManager().clearState();
 	}
 
 	@Test
@@ -35,6 +33,8 @@ class LdesClientTest {
 		List<MockFlowFile> dataFlowfiles = testRunner.getFlowFilesForRelationship(DATA_RELATIONSHIP);
 
 		assertEquals(6, dataFlowfiles.size());
+
+		((LdesClient) testRunner.getProcessor()).ldesService.getStateManager().destroyState();
 	}
 
 	@Test
@@ -46,5 +46,7 @@ class LdesClientTest {
 		List<MockFlowFile> dataFlowfiles = testRunner.getFlowFilesForRelationship(DATA_RELATIONSHIP);
 
 		assertEquals(2, dataFlowfiles.size());
+
+		((LdesClient) testRunner.getProcessor()).ldesService.getStateManager().destroyState();
 	}
 }
