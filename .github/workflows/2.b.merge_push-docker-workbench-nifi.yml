@@ -15,6 +15,7 @@ env:
 
 jobs:
   job-push-docker-workbench-nifi:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Build and push LDES Workbench NiFi docker image
     runs-on: ubuntu-latest
     steps:
@@ -31,17 +32,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: Informatievlaanderen
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=branch
-            type=ref,event=tag
-            type=ref,event=pr
-            type=raw,value=${{env.version}}
-            type=raw,value={{date 'YYYYMMDDTHHmm'}}
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -56,6 +46,6 @@ jobs:
           context: ./ldes-workbench-nifi
           push: true
           tags: |
-            ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:main , ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:${{ env.BUILD_DATE }}
+            ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:latest , ${{ env.LDES_NIFI_DOCKER_IMAGE_NAME }}:${{ env.BUILD_DATE }}
           build-args: |
             NIFI_DOCKER_IMAGE_VERSION=${{ env.NIFI_DOCKER_IMAGE_VERSION }}

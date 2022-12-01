@@ -157,7 +157,10 @@ public class NgsiV2ToLdTranslatorService {
 					}
 
 					if (metadataKey.equalsIgnoreCase(NGSI_V2_KEY_TIMESTAMP)) {
-						modelAttribute.setTimestamp(normaliseDate(metadataValue.toString()));
+						if (dateObserved == null) {
+							modelAttribute.setTimestamp(normaliseDate(
+									metadataValue.getAsObject().getString(NGSI_V2_KEY_VALUE)));
+						}
 					} else if (metadataKey.equalsIgnoreCase(NGSI_V2_KEY_UNIT_CODE)) {
 						modelAttribute.setUnitCode(metadataPropertyValue);
 					} else {

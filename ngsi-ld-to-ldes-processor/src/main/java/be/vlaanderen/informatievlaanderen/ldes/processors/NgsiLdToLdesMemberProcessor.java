@@ -1,51 +1,22 @@
 package be.vlaanderen.informatievlaanderen.ldes.processors;
 
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.ADD_TOP_LEVEL_GENERATED_AT;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.ADD_WKT_PROPERTY;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.DATA_DESTINATION_FORMAT;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.DATE_OBSERVED_VALUE_JSON_PATH;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.DELIMITER;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.ID_JSON_PATH;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.USE_SIMPLE_VERSION_OF;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.VERSION_OF_KEY;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.getDataDestinationFormat;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.getDateObservedValueJsonPath;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.getDelimiter;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.getIdJsonPath;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.getVersionOfKey;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.isAddTopLevelGeneratedAt;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.isAddWKTProperty;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.isUseSimpleVersionOf;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorRelationships.DATA_RELATIONSHIP;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorRelationships.DATA_UNPARSEABLE_RELATIONSHIP;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
+import be.vlaanderen.informatievlaanderen.ldes.processors.services.*;
+import be.vlaanderen.informatievlaanderen.ldes.processors.valueobjects.MemberInfo;
 import org.apache.jena.riot.Lang;
 import org.apache.nifi.annotation.documentation.CapabilityDescription;
 import org.apache.nifi.annotation.documentation.Tags;
 import org.apache.nifi.annotation.lifecycle.OnScheduled;
 import org.apache.nifi.components.PropertyDescriptor;
 import org.apache.nifi.flowfile.FlowFile;
-import org.apache.nifi.processor.AbstractProcessor;
-import org.apache.nifi.processor.ProcessContext;
-import org.apache.nifi.processor.ProcessSession;
-import org.apache.nifi.processor.ProcessorInitializationContext;
-import org.apache.nifi.processor.Relationship;
+import org.apache.nifi.processor.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.FlowManager;
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.LdesMemberConverter;
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.MemberInfoExtractor;
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.OutputFormatConverter;
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.WKTUpdater;
-import be.vlaanderen.informatievlaanderen.ldes.processors.valueobjects.MemberInfo;
+import java.util.*;
+
+import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorPropertyDescriptors.*;
+import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorRelationships.DATA_RELATIONSHIP;
+import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorRelationships.DATA_UNPARSEABLE_RELATIONSHIP;
 
 @Tags({ "ngsild, ldes, vsds" })
 @CapabilityDescription("Converts NGSI-LD to LdesMembers and send them to the next processor")
@@ -71,8 +42,7 @@ public class NgsiLdToLdesMemberProcessor extends AbstractProcessor {
 		descriptors.add(DATE_OBSERVED_VALUE_JSON_PATH);
 		descriptors.add(VERSION_OF_KEY);
 		descriptors.add(DATA_DESTINATION_FORMAT);
-		descriptors.add(ADD_TOP_LEVEL_GENERATED_AT);
-		descriptors.add(USE_SIMPLE_VERSION_OF);
+		descriptors.add(GENERATED_AT_TIME_PROPERTY);
 		descriptors.add(ADD_WKT_PROPERTY);
 		descriptors = Collections.unmodifiableList(descriptors);
 
@@ -100,14 +70,12 @@ public class NgsiLdToLdesMemberProcessor extends AbstractProcessor {
 		String delimiter = getDelimiter(context);
 		String versionOfKey = getVersionOfKey(context);
 		Lang dataDestionationFormat = getDataDestinationFormat(context);
-		boolean addTopLevelGeneratedAt = isAddTopLevelGeneratedAt(context);
-		boolean useSimpleVersionOf = isUseSimpleVersionOf(context);
+		String generatedAtTimeProperty = getGeneratedAtTimeProperty(context);
 		addWKTProperty = isAddWKTProperty(context);
 
 		memberInfoExtractor = new MemberInfoExtractor(dateObservedValueJsonPath, idJsonPath);
-		ldesMemberConverter = new LdesMemberConverter(dateObservedValueJsonPath, idJsonPath, delimiter, versionOfKey,
-				useSimpleVersionOf);
-		outputFormatConverter = new OutputFormatConverter(dataDestionationFormat, addTopLevelGeneratedAt);
+		ldesMemberConverter = new LdesMemberConverter(dateObservedValueJsonPath, idJsonPath, delimiter, versionOfKey);
+		outputFormatConverter = new OutputFormatConverter(dataDestionationFormat, generatedAtTimeProperty);
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class FlowManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FlowManager.class);
 
-	private static int counter = 0;
+	private static Long counter = -1L;
 
 	private FlowManager() {
 	}
@@ -64,8 +64,7 @@ public class FlowManager {
 		session.transfer(flowFile, relationship);
 
 		counter++;
-		LOGGER.info("TRANSFER: sent member #{} (lang: {}) to processor {}", counter, contentType,
-				relationship.getName());
-		LOGGER.info("TRANSFER: member data: {}", data);
+
+		LOGGER.debug("TRANSFER: sent member #{} (content-type: {})", counter, contentType);
 	}
 }

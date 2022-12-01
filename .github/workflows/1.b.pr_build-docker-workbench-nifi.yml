@@ -11,6 +11,7 @@ env:
 
 jobs:
   job-build-docker-workbench-nifi:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Test build LDES Workbench NiFi Docker image
     runs-on: ubuntu-latest
     steps:

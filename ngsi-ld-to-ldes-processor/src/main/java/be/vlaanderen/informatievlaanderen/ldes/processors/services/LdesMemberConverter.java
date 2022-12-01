@@ -19,16 +19,14 @@ public class LdesMemberConverter {
 	private final String idJsonPath;
 	private final String delimiter;
 	private final String versionOfKey;
-	private final boolean useSimpleVersionOf;
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
 	public LdesMemberConverter(String dateObservedValueJsonPath, String idJsonPath, String delimiter,
-			String versionOfKey, boolean useSimpleVersionOf) {
+			String versionOfKey) {
 		this.dateObservedValueJsonPath = dateObservedValueJsonPath;
 		this.idJsonPath = idJsonPath;
 		this.delimiter = delimiter;
 		this.versionOfKey = versionOfKey;
-		this.useSimpleVersionOf = useSimpleVersionOf;
 	}
 
 	public String convert(final String jsonString) {
@@ -36,12 +34,7 @@ public class LdesMemberConverter {
 		String baseId = JsonPath.read(jsonString, idJsonPath);
 		DocumentContext documentContext = JsonPath.using(configuration).parse(jsonString).set(idJsonPath,
 				versionObjectId);
-		JsonNode versionOfNode;
-		if (useSimpleVersionOf)
-			versionOfNode = getUriNamedNode(baseId);
-		else {
-			versionOfNode = getVersionOfNode(baseId);
-		}
+		JsonNode versionOfNode = getUriNamedNode(baseId);
 		JsonNode versionOf = addVersionOfNode(documentContext, versionOfNode);
 		return versionOf.toString();
 	}
@@ -58,17 +51,12 @@ public class LdesMemberConverter {
 		return json.set(versionOfKey, versionOfNode);
 	}
 
-	private ObjectNode getVersionOfNode(String baseId) {
-		final ObjectMapper mapper = new ObjectMapper();
-		final ObjectNode root = mapper.createObjectNode();
-		root.set("type", mapper.convertValue("Relationship", JsonNode.class));
-		root.set("object", mapper.convertValue(baseId, JsonNode.class));
-		return root;
-	}
-
 	public String generateId(String jsonString) {
 		String dateObserved;
 		try {
+			if (dateObservedValueJsonPath.equals("")) {
+				throw new PathNotFoundException();
+			}
 			dateObserved = JsonPath.read(jsonString, dateObservedValueJsonPath);
 		} catch (PathNotFoundException pathNotFoundException) {
 			dateObserved = LocalDateTime.now().format(formatter);
