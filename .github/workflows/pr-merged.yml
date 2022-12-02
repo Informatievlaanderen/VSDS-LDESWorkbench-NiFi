@@ -1,4 +1,4 @@
-name: 2. Build & Deploy Project
+name: 2.a Build & Deploy Project (Nar)
 
 on:
   push:

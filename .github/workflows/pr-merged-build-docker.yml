@@ -1,4 +1,4 @@
-name: 2. Build & Deploy Project
+name: 2.b Build & Deploy Project (Docker)
 
 on:
   workflow_run:
