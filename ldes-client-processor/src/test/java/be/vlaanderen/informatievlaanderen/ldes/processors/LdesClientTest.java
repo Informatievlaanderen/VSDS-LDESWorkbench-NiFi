@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.nifi.util.MockFlowFile;
 import org.apache.nifi.util.TestRunner;
 import org.apache.nifi.util.TestRunners;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,11 @@ class LdesClientTest {
 		testRunner = TestRunners.newTestRunner(LdesClient.class);
 	}
 
+	@AfterEach
+	void tearDown() {
+		((LdesClient) testRunner.getProcessor()).ldesService.getStateManager().destroyState();
+	}
+
 	@Test
 	void when_runningLdesClientWithConnectedFragments_expectsAllLdesMembers() {
 		testRunner.setProperty("DATA_SOURCE_URL",
@@ -33,8 +39,6 @@ class LdesClientTest {
 		List<MockFlowFile> dataFlowfiles = testRunner.getFlowFilesForRelationship(DATA_RELATIONSHIP);
 
 		assertEquals(6, dataFlowfiles.size());
-
-		((LdesClient) testRunner.getProcessor()).ldesService.getStateManager().destroyState();
 	}
 
 	@Test
@@ -46,7 +50,16 @@ class LdesClientTest {
 		List<MockFlowFile> dataFlowfiles = testRunner.getFlowFilesForRelationship(DATA_RELATIONSHIP);
 
 		assertEquals(2, dataFlowfiles.size());
+	}
 
-		((LdesClient) testRunner.getProcessor()).ldesService.getStateManager().destroyState();
+	@Test
+	void when_runningLdesClientWithFragmentContainingGMLData_expectsAllLdesMembers() {
+		testRunner.setProperty("DATA_SOURCE_URL", "http://localhost:10101/exampleData?scenario=gml-data");
+
+		testRunner.run(1);
+
+		List<MockFlowFile> dataFlowfiles = testRunner.getFlowFilesForRelationship(DATA_RELATIONSHIP);
+
+		assertEquals(1, dataFlowfiles.size());
 	}
 }

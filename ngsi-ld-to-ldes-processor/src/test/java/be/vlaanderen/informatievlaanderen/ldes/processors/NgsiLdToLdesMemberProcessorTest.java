@@ -60,6 +60,26 @@ class NgsiLdToLdesMemberProcessorTest {
 		assertTrue(model.isIsomorphicWith(getModel(content, Lang.NQUADS)));
 	}
 
+	@Test
+	void when_runningLdesClientWithDataContainingGMLData_expectsResult() throws URISyntaxException, IOException {
+		testRunner.setProperty("DATE_OBSERVED_VALUE_JSON_PATH", DEFAULT_DATE_OBSERVED_VALUE_JSON_PATH);
+		testRunner.setProperty("ID_JSON_PATH", "$.identificator.id");
+		testRunner.setProperty("DELIMITER", DEFAULT_DELIMITER);
+		testRunner.setProperty("VERSION_OF_KEY", DEFAULT_VERSION_OF_KEY);
+		testRunner.setProperty("DATA_DESTINATION_FORMAT", "application/ld+json");
+		testRunner.setProperty("GENERATED_AT_TIME_PROPERTY", "");
+		final Path JSON_SNIPPET = Paths.get(String.valueOf(new File(
+				Objects.requireNonNull(getClass().getClassLoader().getResource("example-address-gml.json"))
+						.toURI())));
+		testRunner.enqueue(JSON_SNIPPET);
+		testRunner.run(1);
+
+		List<MockFlowFile> dataFlowfiles = testRunner.getFlowFilesForRelationship(DATA_RELATIONSHIP);
+
+		assertEquals(1, dataFlowfiles.size());
+		String content = dataFlowfiles.get(0).getContent();
+	}
+
 	private Model readLdesMemberFromFile(ClassLoader classLoader, String fileName)
 			throws URISyntaxException, IOException {
 		File file = new File(Objects.requireNonNull(classLoader.getResource(fileName)).toURI());
