@@ -18,7 +18,7 @@ import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdTo
 import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorRelationships.DATA_RELATIONSHIP;
 import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiLdToLdesMemberProcessorRelationships.DATA_UNPARSEABLE_RELATIONSHIP;
 
-@Tags({ "ngsild, ldes, vsds" })
+@Tags({ "ngsild", "ldes", "vsds" })
 @CapabilityDescription("Converts NGSI-LD to LdesMembers and send them to the next processor")
 public class NgsiLdToLdesMemberProcessor extends AbstractProcessor {
 

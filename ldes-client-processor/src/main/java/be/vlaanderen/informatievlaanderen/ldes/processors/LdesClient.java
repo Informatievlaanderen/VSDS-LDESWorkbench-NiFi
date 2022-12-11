@@ -34,7 +34,7 @@ import be.vlaanderen.informatievlaanderen.ldes.client.valueobjects.LdesFragment;
 import be.vlaanderen.informatievlaanderen.ldes.processors.config.LdesProcessorProperties;
 import be.vlaanderen.informatievlaanderen.ldes.processors.services.FlowManager;
 
-@Tags({ "ldes-client, vsds" })
+@Tags({ "ldes-client", "vsds" })
 @CapabilityDescription("Extract members from an LDES source and send them to the next processor")
 @Stateful(description = "Stores mutable fragments to allow processor restart", scopes = Scope.LOCAL)
 public class LdesClient extends AbstractProcessor {

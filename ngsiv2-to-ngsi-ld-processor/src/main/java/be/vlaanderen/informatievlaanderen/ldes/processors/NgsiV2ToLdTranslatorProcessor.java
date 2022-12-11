@@ -27,7 +27,7 @@ import be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProce
 import be.vlaanderen.informatievlaanderen.ldes.processors.services.FlowManager;
 import be.vlaanderen.informatievlaanderen.ldes.processors.services.NgsiV2ToLdTranslatorService;
 
-@Tags({ "ngsiv2-to-ld, ldes, vsds" })
+@Tags({ "ngsiv2-to-ld", "ldes", "vsds" })
 @CapabilityDescription("Translate and transform NGSIv2 data to NGSI-LD")
 public class NgsiV2ToLdTranslatorProcessor extends AbstractProcessor {
 
