@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  NIFI_DOCKER_IMAGE_VERSION: 1.17.0-jdk17
+  NIFI_DOCKER_IMAGE_VERSION: 1.19.0-jdk18
 
 jobs:
   job-build-docker-workbench-nifi:

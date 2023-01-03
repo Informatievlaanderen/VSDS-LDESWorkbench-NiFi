@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
 
 env:
-  BASE_IMAGE_TAG: 17-slim-buster
-  NIFI_VERSION: 1.17.0
-  DISTRO_PATH: 1.17.0
+  BASE_IMAGE_TAG: 18-slim-buster
+  NIFI_VERSION: 1.19.0
+  DISTRO_PATH: 1.19.0
   NIFI_DOCKER_IMAGE_NAME: ldes/nifi
-  NIFI_DOCKER_IMAGE_VERSION: 1.17.0-jdk17
+  NIFI_DOCKER_IMAGE_VERSION: 1.19.0-jdk18
 
 jobs:
   job-build-push-docker-nifi:
