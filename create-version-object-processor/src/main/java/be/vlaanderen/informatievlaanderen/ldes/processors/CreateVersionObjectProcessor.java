@@ -1,7 +1,10 @@
 package be.vlaanderen.informatievlaanderen.ldes.processors;
 
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.*;
-import be.vlaanderen.informatievlaanderen.ldes.processors.valueobjects.MemberInfo;
+import be.vlaanderen.informatievlaanderen.ldes.processors.services.FlowManager;
+import be.vlaanderen.informatievlaanderen.ldes.version.services.LdesMemberConverter;
+import be.vlaanderen.informatievlaanderen.ldes.version.services.MemberInfoExtractor;
+import be.vlaanderen.informatievlaanderen.ldes.version.services.OutputFormatConverter;
+import be.vlaanderen.informatievlaanderen.ldes.version.valueobjects.MemberInfo;
 import org.apache.jena.riot.Lang;
 import org.apache.nifi.annotation.documentation.CapabilityDescription;
 import org.apache.nifi.annotation.documentation.Tags;

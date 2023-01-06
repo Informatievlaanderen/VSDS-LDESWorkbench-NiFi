@@ -23,6 +23,10 @@
 			<groupId>be.vlaanderen.informatievlaanderen</groupId>
 			<artifactId>ldes-workbench-nifi-common</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>be.vlaanderen.informatievlaanderen</groupId>
+            <artifactId>ldes-client</artifactId>
+        </dependency>
        
        	<!-- Jena -->
 		<dependency>

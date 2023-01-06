@@ -1,6 +1,9 @@
 package be.vlaanderen.informatievlaanderen.ldes.processors.services;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import be.vlaanderen.informatievlaanderen.ldes.version.services.OutputFormatConverter;
+import be.vlaanderen.informatievlaanderen.ldes.version.valueobjects.MemberInfo;
+import org.apache.jena.riot.Lang;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -9,10 +12,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.jena.riot.Lang;
-import org.junit.jupiter.api.Test;
-
-import be.vlaanderen.informatievlaanderen.ldes.processors.valueobjects.MemberInfo;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OutputFormatConverterTest {
 	private static final String PROV_GENERATED_AT_TIME = "http://www.w3.org/ns/prov#generatedAtTime";

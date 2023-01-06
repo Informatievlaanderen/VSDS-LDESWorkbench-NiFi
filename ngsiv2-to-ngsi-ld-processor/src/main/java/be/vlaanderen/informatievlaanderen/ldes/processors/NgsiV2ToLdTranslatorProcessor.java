@@ -1,14 +1,8 @@
 package be.vlaanderen.informatievlaanderen.ldes.processors;
 
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorProperties.CORE_CONTEXT;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorProperties.LD_CONTEXT;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorRelationships.DATA_OUT_RELATIONSHIP;
-import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorRelationships.DATA_UNPARSEABLE_RELATIONSHIP;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
+import be.vlaanderen.informatievlaanderen.ldes.ngsiv2.services.NgsiV2ToLdTranslatorService;
+import be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorProperties;
+import be.vlaanderen.informatievlaanderen.ldes.processors.services.FlowManager;
 import org.apache.jena.riot.Lang;
 import org.apache.nifi.annotation.documentation.CapabilityDescription;
 import org.apache.nifi.annotation.documentation.Tags;
@@ -23,9 +17,14 @@ import org.apache.nifi.processor.exception.ProcessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorProperties;
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.FlowManager;
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.NgsiV2ToLdTranslatorService;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorProperties.CORE_CONTEXT;
+import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorProperties.LD_CONTEXT;
+import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorRelationships.DATA_OUT_RELATIONSHIP;
+import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdProcessorRelationships.DATA_UNPARSEABLE_RELATIONSHIP;
 
 @Tags({ "ngsiv2-to-ld", "ldes", "vsds" })
 @CapabilityDescription("Translate and transform NGSIv2 data to NGSI-LD")

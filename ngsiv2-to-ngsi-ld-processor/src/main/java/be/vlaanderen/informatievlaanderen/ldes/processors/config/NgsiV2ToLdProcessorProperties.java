@@ -1,12 +1,11 @@
 package be.vlaanderen.informatievlaanderen.ldes.processors.config;
 
-import static be.vlaanderen.informatievlaanderen.ldes.processors.NgsiV2ToLdTranslatorDefaults.DEFAULT_CORE_CONTEXT;
-
 import org.apache.nifi.components.PropertyDescriptor;
 import org.apache.nifi.processor.ProcessContext;
 import org.apache.nifi.processor.util.StandardValidators;
 
 public class NgsiV2ToLdProcessorProperties {
+	public static final String DEFAULT_CORE_CONTEXT = "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld";
 
 	private NgsiV2ToLdProcessorProperties() {
 	}
