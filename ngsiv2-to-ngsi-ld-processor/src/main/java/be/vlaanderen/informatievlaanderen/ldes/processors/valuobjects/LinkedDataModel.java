@@ -8,6 +8,7 @@ import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2To
 import static be.vlaanderen.informatievlaanderen.ldes.processors.config.NgsiV2ToLdMapping.translateKey;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.jena.atlas.json.JsonArray;
 import org.apache.jena.atlas.json.JsonObject;
@@ -49,7 +50,7 @@ public class LinkedDataModel {
 	}
 
 	public List<String> getContexts() {
-		return contexts.stream().map(JsonValue::getAsString).map(JsonString::value).toList();
+		return contexts.stream().map(JsonValue::getAsString).map(JsonString::value).collect(Collectors.toList());
 	}
 
 	public void addContextDeclaration(String context) {
@@ -63,7 +64,7 @@ public class LinkedDataModel {
 		this.contexts.clear();
 		this.contexts.addAll(contexts.stream()
 				.map(JsonString::new)
-				.toList());
+				.collect(Collectors.toList()));
 	}
 
 	public void setId(String entityId) {
