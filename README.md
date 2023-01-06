@@ -2,14 +2,14 @@
 
 The workbench is a customized [Apache NiFi](https://nifi.apache.org) docker image containing processors built by VSDS to allow processing of data that is intended to be ingested by an LDES server.
 
-- [Available Processors](#available-processors)
-    - [Ldes Client](#ldes-client)
-    - [NGSI V2 to LD](#ngsi-v2-to-ld)
-    - [NGSI LD to LDES](#ngsi-ld-to-ldes)
-- [Deliverables](#deliverables)
-    - [NiFi nar packages](#nifi-nar-packages)
-    - [NiFi docker](#nifi-docker)
-    
+- [LDES Workbench NiFi](#ldes-workbench-nifi)
+  * [Available Processors](#available-processors)
+    + [LDES Client](#ldes-client)
+    + [NGSI V2 To LD](#ngsi-v2-to-ld)
+    + [Create Version Object](#create-version-object)
+  * [Deliverables](#deliverables)
+    + [NiFi nar packages](#nifi-nar-packages)
+    + [NiFi Docker](#nifi-docker)
 
 ## Available Processors
 
@@ -26,10 +26,9 @@ the NgsiV2ToLd processor will take the inputted NGSI V2 data and transform it to
 
 Further information on how to use this processor can be found in the in-NiFi documentation.
 
-### NGSI LD to LDES
+### Create Version Object
 
-To support the ingestion of input in [NGSI LD format](https://vloca-kennishub.vlaanderen.be/NGSI_(LD)), the NgsiLdToLdes 
-processor will take the inputted NGSI LD data and transform it into LDES members to be ingested into an LDES server.
+To support the creation of version objects, e.g. when transforming data in the [NGSI LD format](https://vloca-kennishub.vlaanderen.be/NGSI_(LD)) to LDES.
 
 Further information on how to use this processor can be found in the in-NiFi documentation.
 
