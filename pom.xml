@@ -317,7 +317,7 @@
 		</repository>
 		<repository>
 			<id>github</id>
-			<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESClient4J</url>
+			<url>https://maven.pkg.github.com/Informatievlaanderen/VSDS-LDESConnectors</url>
 		</repository>
 	</repositories>
 
