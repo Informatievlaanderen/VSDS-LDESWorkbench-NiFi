@@ -61,30 +61,4 @@ class NgsiV2ToLdTranslatorProcessorTest {
 		testRunner.assertQueueEmpty();
 		testRunner.assertTransferCount(DATA_OUT_RELATIONSHIP, 1);
 	}
-
-	@Test
-	void whenSonarQubeIsTakenTooFar_thenEqualsIsTested() {
-		NgsiV2ToLdTranslatorProcessor processor1 = new NgsiV2ToLdTranslatorProcessor();
-		NgsiV2ToLdTranslatorProcessor processor2 = processor1;
-
-		assertEquals(processor1, processor1);
-		assertEquals(processor2, processor2);
-		assertEquals(processor1, processor2);
-
-		assertNotEquals("test", processor2);
-		assertNotEquals(processor2, testRunner);
-		assertNotEquals(null, processor2);
-	}
-
-	@Test
-	void whenSonarQubeIsTakenTooFar_thenHashcodeIsTested() {
-		NgsiV2ToLdTranslatorProcessor processor1 = new NgsiV2ToLdTranslatorProcessor();
-		NgsiV2ToLdTranslatorProcessor processor2 = processor1;
-
-		assertSame(processor1, processor2);
-
-		assertNotSame("test", processor2);
-		assertNotSame(processor2, testRunner);
-		assertNotNull(processor2);
-	}
 }

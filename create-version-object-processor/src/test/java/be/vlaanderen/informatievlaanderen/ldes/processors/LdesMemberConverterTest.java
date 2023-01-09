@@ -1,9 +1,7 @@
 package be.vlaanderen.informatievlaanderen.ldes.processors;
 
+import be.vlaanderen.informatievlaanderen.ldes.version.services.LdesMemberConverter;
 import com.jayway.jsonpath.JsonPath;
-
-import be.vlaanderen.informatievlaanderen.ldes.processors.services.LdesMemberConverter;
-
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -24,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class LdesMemberConverterTest {
 	private static final String DEFAULT_ID_JSON_PATH = "$.id";
 	private static final String DEFAULT_DELIMITER = "/";
-	private static final String DEFAULT_VERSION_OF_KEY = "http://purl.org/dc/terms/isVersionOf";
 
 	LdesMemberConverter ldesMemberConverter = new LdesMemberConverter("",
 			DEFAULT_ID_JSON_PATH, DEFAULT_DELIMITER);
